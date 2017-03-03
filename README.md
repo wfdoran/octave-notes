@@ -16,6 +16,20 @@ b = [1;1;1];
 A \ b
 ```
 
+## Solving
+
+### Polynomials
+
+Multiply polynomials with `conv`.  Devide polynomials with `deconv`.
+
+```
+a = [1,1,1,1];
+b = roots(a)
+c = deconv(a,[1,b(1)])
+c = deconv(c,[1,b(2)])
+c = deconv(c,[1,b(3)])
+```
+
 ## Programming/Loop Constructs
 
 ## Functions
