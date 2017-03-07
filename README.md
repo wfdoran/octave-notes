@@ -100,3 +100,14 @@ f = @(x) sin(100.0*x)/10.0 + (x-4) .* (x-4);
 
 ## Images
 
+### Load and Display an Image
+
+Navigate to working directory in "File Browser".
+
+```
+I = imread("orig.jpg");
+size(I)
+imshow(I);
+```
+
+
