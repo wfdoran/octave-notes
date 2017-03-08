@@ -146,4 +146,22 @@ J = arrayfun(@quant8, I);
 imshow(J);
 ```
 I don't know what is going on behind the scenes, but the call to 
-`arrayfun` is quite slow. 
+`arrayfun` is quite slow.
+
+### Apply a Filter
+
+Average each 3x3 patch.   
+```
+T = ones(3,3) / 9;
+I = imread("orig.jpg");
+J = uint8(conv2(I, T, "same"));
+imshow(J);
+```
+
+Find edges.  
+```
+T = [1,-2,1;-2,4,-2;1,-2,1];
+I = imread("orig.jpg");
+J = uint8(conv2(I, T, "same"));
+imshow(J);
+```
