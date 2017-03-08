@@ -12,6 +12,13 @@ Ranges are defined by `start:step:end` and includes the `end` if a multiple of t
 
 Some base datatypes: `double`, `uint8`, `uint32`
 
+## Scalar Math
+
+```
+isprime(12345554321)
+factor(12345554321)
+```
+
 ## Matrices
 
 Arrays and matrices are 1-indexed.  Entries are accessed with parenthesis (e.g. `A(5)` or `B(2,5)`).
@@ -110,4 +117,33 @@ size(I)
 imshow(I);
 ```
 
+### Apply a Function to Every Pixel
 
+First, a function quantizes to multiples of `m`.
+```
+function rv = quant(x, m)
+    t = int32(x) ./ int32(m);
+    rv = m * t;
+    if (rv > 255)
+        rv = 255 - mod(255,m);
+    endif
+    if (rv < 0) 
+        rv = 0;
+    endif
+endfunction
+```
+
+Second, specialize to 8.  Octave has closures!
+```
+foo = @(y) @(x) uint8(quant(x,y));
+quant8 = foo(8);
+```
+
+Finally, use `arrayfun` to apply the `quant8` to every pixel.
+```         
+I = imread("orig.jpg");
+J = arrayfun(@quant8, I);
+imshow(J);
+```
+I don't know what is going on behind the scenes, but the call to 
+`arrayfun` is quite slow. 
