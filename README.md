@@ -101,6 +101,26 @@ Also, can one line the function definition with
 f = @(x) sin(100.0*x)/10.0 + (x-4) .* (x-4);
 ```
 
+### Minimize Subject to Constraint
+
+Minimize `f(x)` subject to `g(x)=0 `.  
+
+```
+function [y] = g(x)
+y = x(1)*x(1) + x(2)*x(2) + x(3)*x(3) + x(4)*x(4) - 1;
+endfunction
+
+function [y] = f(x)
+y = x(1)*x(2) + x(1)*x(3) + x(1)*x(4) + x(2)*x(3) + x(2)*x(4) + 3*x(3)*x(4);
+endfunction
+
+x0 = [1,0,0,0]
+[x, obj] = sqp(x0, @f, @g);
+x
+obj
+```
+
+
 ## Programming/Loop Constructs
 
 ## Functions
