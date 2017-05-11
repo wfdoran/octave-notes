@@ -112,7 +112,7 @@ endfunction
 
 function [y] = f(x)
 y = x(1)*x(2) + x(1)*x(3) + x(1)*x(4) + x(2)*x(3) + x(2)*x(4) + 3*x(3)*x(4);
-endfunction
+'
 
 x0 = [1,0,0,0]
 [x, obj] = sqp(x0, @f, @g);
@@ -120,6 +120,18 @@ x
 obj
 ```
 
+## Plots
+
+### Simple 2-D Plot
+
+```
+x = -10:.1:10;
+y = sin(x) ./ (1 + x.^2)
+plot(x,y)
+```
+Ranges are start:step:end and include the end.  Note the `.`op.  This means 
+apply component by component.  Without this, octave tries to perform a matrix 
+operation.
 
 ## Programming/Loop Constructs
 
