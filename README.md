@@ -120,6 +120,30 @@ x
 obj
 ```
 
+## linear and integer programmings [glpk](https://www.gnu.org/software/octave/doc/v4.0.0/Linear-Programming.html)
+
+Example from Wikipedia article on [Integer Programming](https://en.wikipedia.org/wiki/Integer_programming)
+
+```
+c = [0,1]';               # linear function int maximize
+A = [-1,1;3,2;2,3];       # lhs on linear constraints
+b = [1,12,12]';           # rhs on linear constraints
+lb = [0,0]';              # lower bound on variables
+ub = [];                  # upper bound (none) on variables
+ctype = "UUU";            # contraint types
+                          # U => upper bound
+                          # L => lower bound
+                          # S => equality
+vartype = "II";           # variable type
+                          # I => integer
+                          # C => contineous 
+s = -1;                   # maximize xc' (1 => minimize)
+param.msglev = 1;
+param.itlim = 100;
+
+[xmin, fmin, status,extra] = glpk(c,A,b,lb,ub,ctype,vartype,s,param);                         
+```
+
 ## Plots
 
 ### Simple 2-D Plot
